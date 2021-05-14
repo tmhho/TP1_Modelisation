@@ -33,20 +33,20 @@ while time < tmax :
     time += dt_reel                # Incrémente le temps 
  
 ## Affichage des résultats
-fig=plt.figure(1)
-plt.title("Solution u en fonction de x pour CFL = "+str(cfl)+" et T = "+str(tmax))
-plt.xlabel('x')
-plt.ylabel('u')
-plt.axis([-1 , 1 , -0.25, 1.25])
-plt.plot(X,U1,'-g',X,U2,'-b',X,U3,'-r',X,Uini,'-k')
-plt.legend(['Schema1','Schema2', 'Schema3', 'Exacte'],loc='best')
-plt.grid(True)     
-plt.show(block=False)
-plt.pause(10.0)  ## Pause pour voir la figure avant sauvegarde
-plt.savefig("u=f(x)"+"T="+str(tmax)+"_CFL ="+str(cfl)+".png")  ##sauve figure
-plt.close('all')
+# fig=plt.figure(1)
+# plt.title("Solution u en fonction de x pour CFL = "+str(cfl)+" et T = "+str(tmax))
+# plt.xlabel('x')
+# plt.ylabel('u')
+# plt.axis([-1 , 1 , -0.25, 1.25])
+# plt.plot(X,U1,'-g',X,U2,'-b',X,U3,'-r',X,Uini,'-k')
+# plt.legend(['Schema1','Schema2', 'Schema3', 'Exacte'],loc='best')
+# plt.grid(True)     
+# plt.show(block=False)
+# plt.pause(10.0)  ## Pause pour voir la figure avant sauvegarde
+# plt.savefig("u=f(x)"+"T="+str(tmax)+"_CFL ="+str(cfl)+".png")  ##sauve figure
+# plt.close('all')
 
-
+# ERREUR AMPLITUDE
 xi = np.linspace(0, np.pi/8.,1000)
 fig=plt.figure(2)
 plt.title('Erreur d\'amplitude schéma 1')
@@ -94,3 +94,56 @@ plt.yscale('log')
 plt.xlabel('log(xi)')
 plt.ylabel('log(E(xi))')
 plt.savefig("Ea_schéma3_loglog.png")
+
+
+# ERREUR PHASE
+
+xi = np.linspace(0, np.pi/8.,1000)
+fig=plt.figure(5)
+plt.title('Erreur de phase - schéma 1')
+plt.xlabel('xi')
+plt.ylabel('E(xi)')
+plt.plot(xi, tp.Ep1(xi,0.2))
+plt.plot(xi, tp.Ep1(xi,0.5))
+plt.plot(xi, tp.Ep1(xi,0.8))
+plt.legend(['alpha 0.2','alpha 0.5','alpha 0.8'])
+plt.savefig("Ep_schéma1.png")
+plt.xscale('log')
+plt.xlabel('log(xi)')
+plt.savefig("Ep_schéma1_xlog.png")
+plt.yscale('log')
+plt.savefig("Ep_schéma1_loglog.png")
+
+
+xi = np.linspace(0, np.pi/8.,1000)
+fig=plt.figure(6)
+plt.title('Erreur de phase -  schéma 2')
+plt.xlabel('xi')
+plt.ylabel('E(xi)')
+plt.plot(xi, tp.Ep2(xi,0.2))
+plt.plot(xi, tp.Ep2(xi,0.5))
+plt.plot(xi, tp.Ep2(xi,0.8))
+plt.legend(['alpha 0.2','alpha 0.5','alpha 0.8'])
+plt.savefig("Ep_schéma2.png")
+plt.xscale('log')
+plt.xlabel('log(xi)')
+plt.savefig("Ep_schéma2_xlog.png")
+plt.yscale('log')
+plt.savefig("Ep_schéma2_loglog.png")
+
+xi = np.linspace(0, np.pi/8.,1000)
+fig=plt.figure(7)
+plt.title('Erreur de phase - schéma 3')
+plt.xlabel('xi')
+plt.ylabel('E(xi)')
+plt.plot(xi, tp.Ep3(xi,0.2))
+plt.plot(xi, tp.Ep3(xi,0.5))
+plt.plot(xi, tp.Ep3(xi,0.8))
+plt.legend(['alpha 0.2','alpha 0.5','alpha 0.8'])
+plt.savefig("Ep_schéma3.png")
+plt.xscale('log')
+plt.xlabel('log(xi)')
+plt.savefig("Ep_schéma3_xlog.png")
+plt.yscale('log')
+plt.ylabel('log(E(xi))')
+plt.savefig("Ep_schéma3_loglog.png")
